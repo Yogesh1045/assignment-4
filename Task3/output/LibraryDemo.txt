@@ -1,0 +1,12 @@
+small   520x340  : results  520x216  | search row height 41, Search button 55x23 | button row height 33, Reserve 61x23
+[screenshot] screenshots/1_nested_small_520x340.png (520x340)
+medium  760x480  : results  760x356  | search row height 41, Search button 55x23 | button row height 33, Reserve 61x23
+[screenshot] screenshots/2_nested_medium_760x480.png (760x480)
+large  1100x700  : results 1100x576  | search row height 41, Search button 55x23 | button row height 33, Reserve 61x23
+[screenshot] screenshots/3_nested_large_1100x700.png (1100x700)
+[screenshot] screenshots/4_absolute_small_520x340.png (520x340)
+[screenshot] screenshots/6_absolute_large_1100x700.png (1100x700)
+
+Layout cost (invalidate + validate whole frame, avg of 2,000):
+   LibrarySearch       194.5 us per layout pass,  5 containers, 14 components in total
+   LibraryAbsolute      32.6 us per layout pass,  1 containers, 10 components in total
