@@ -1,0 +1,10 @@
+T1 valid (button)  : 2500 INR -> '30.00 USD'  expected '30.00 USD'
+[screenshot] screenshots/1_valid_conversion.png (363x35)
+T2 invalid (button): '12a5' -> 'Invalid amount'  expected 'Invalid amount'
+[screenshot] screenshots/2_invalid_amount.png (382x35)
+T3 Enter key       : 1000 INR -> '11.00 EUR'  expected '11.00 EUR'
+[screenshot] screenshots/3_enter_key.png (355x35)
+T4 empty field     : '' -> 'Invalid amount'  expected 'Invalid amount'
+[screenshot] screenshots/4_v2_enter_shows_dialog.png (262x90)
+Shared Action      : 500 INR -> '6.00 USD' (one Action object, 4 triggers)
+[screenshot] screenshots/5_shared_action.png (355x56)

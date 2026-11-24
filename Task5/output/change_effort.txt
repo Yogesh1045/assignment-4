@@ -1,0 +1,40 @@
+Style A: 3 lines changed v1 -> v2
+Style B: 6 lines changed v1 -> v2
+Style C: 8 lines changed v1 -> v2
+Style D: 4 lines changed v1 -> v2
+--- diff style A
+15a16
+>         amount.addActionListener(this);
+32c33
+<     @Override public void actionPerformed(ActionEvent e) { result.setText(compute()); }
+---
+>     @Override public void actionPerformed(ActionEvent e) { JOptionPane.showMessageDialog(this, compute(), "Result", JOptionPane.INFORMATION_MESSAGE); }
+--- diff style B
+15c15,17
+<         convert.addActionListener(new ConvertHandler());
+---
+>         ConvertHandler h = new ConvertHandler();
+>         convert.addActionListener(h);
+>         amount.addActionListener(h);
+33c35
+<         @Override public void actionPerformed(ActionEvent e) { result.setText(compute()); }
+---
+>         @Override public void actionPerformed(ActionEvent e) { JOptionPane.showMessageDialog(ConverterB.this, compute(), "Result", JOptionPane.INFORMATION_MESSAGE); }
+--- diff style C
+15,17c15,19
+<         convert.addActionListener(new ActionListener() {
+<             @Override public void actionPerformed(ActionEvent e) { result.setText(compute()); }
+<         });
+---
+>         ActionListener h = new ActionListener() {
+>             @Override public void actionPerformed(ActionEvent e) { JOptionPane.showMessageDialog(ConverterC.this, compute(), "Result", JOptionPane.INFORMATION_MESSAGE); }
+>         };
+>         convert.addActionListener(h);
+>         amount.addActionListener(h);
+--- diff style D
+15c15,17
+<         convert.addActionListener(e -> result.setText(compute()));
+---
+>         ActionListener h = e -> JOptionPane.showMessageDialog(this, compute(), "Result", JOptionPane.INFORMATION_MESSAGE);
+>         convert.addActionListener(h);
+>         amount.addActionListener(h);
