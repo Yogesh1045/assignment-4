@@ -1,0 +1,7 @@
+--- mouseclicked WITHOUT @Override:
+compiles with NO error or warning (the bug is silent)
+--- mouseclicked WITH @Override:
+misspelled/DrawPad.java (with @Override):19: error: method does not override or implement a method from a supertype
+            @Override public void mouseclicked(MouseEvent e) {
+            ^
+1 error

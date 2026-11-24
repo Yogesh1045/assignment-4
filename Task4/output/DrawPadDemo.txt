@@ -1,0 +1,20 @@
+== Original (reported) program: mouseclicked never called ==
+   after 5 clicks: count = 0, label = 'Clicks: 0'
+[screenshot] screenshots/1_original_after_5_clicks.png (400x300)
+
+== Half-fixed (mouseClicked spelled right, still getGraphics) ==
+   after 5 clicks: label = 'Clicks: 5'
+[screenshot] screenshots/2_halffixed_before_minimise.png (400x300)
+   after minimise + restore: label = 'Clicks: 5' but dots are gone (see screenshot)
+[screenshot] screenshots/3_halffixed_after_restore.png (400x300)
+
+== Repaired program (Complete the Code) ==
+[screenshot] screenshots/4_fixed_before_minimise.png (400x300)
+[screenshot] screenshots/5_fixed_after_restore.png (400x300)
+
+== Alternative: redraw n points vs copy one 400x300 BufferedImage (avg of 200 repaints) ==
+  n clicks   redraw points (us) copy BufferedImage (us)    points memory       image memory
+       100                265.1                   26.6             3 KB             468 KB
+      1000               1440.3                   17.7            31 KB             468 KB
+     10000              12746.1                   17.7           312 KB             468 KB
+    100000             118207.1                   15.1          3125 KB             468 KB
