@@ -1,0 +1,39 @@
+[screenshot] screenshots/1_opened.png (250x212)
+Doctors after choosing Orthopaedics: [Dr. Chitra, Dr. Dinesh, Dr. Ezhil]
+Doctors after choosing Cardiology  : [Dr. Anitha, Dr. Bala]
+[screenshot] screenshots/2_doctor_list_follows_department.png (250x212)
+T1 valid booking               -> Booked P10001 with Dr. Anitha (Cardiology) at 09:30.
+[screenshot] screenshots/3_T1.png (327x212)
+T2 bad patient ID              -> Patient ID must look like P12345.
+[screenshot] screenshots/4_T2.png (250x212)
+T3 same doctor + slot again    -> Dr. Anitha is already booked at 09:30.
+[screenshot] screenshots/5_T3.png (250x212)
+T4 another doctor, same slot   -> Booked P10003 with Dr. Gokul (ENT) at 09:30.
+[screenshot] screenshots/6_T4.png (286x212)
+[screenshot] screenshots/7_confirm_before_close.png (339x90)
+After answering NO, window still showing: true
+
+Event trace from open to close:
+     133 ms  constructor: components created
+     221 ms  windowOpened
+     224 ms  windowActivated
+    1308 ms  itemStateChanged(department=Orthopaedics)
+    1322 ms  itemStateChanged(department=Cardiology)
+    1823 ms  actionPerformed(Book)
+    2241 ms  itemStateChanged(department=Cardiology)
+    2312 ms  actionPerformed(Book)
+    2803 ms  actionPerformed(Book)
+    3212 ms  itemStateChanged(department=ENT)
+    3282 ms  actionPerformed(Book)
+    3694 ms  itemStateChanged(department=ENT)
+    3700 ms  windowClosing
+    3733 ms  windowDeactivated
+    5375 ms  confirm dialog answered NO
+    5679 ms  windowClosing
+    5681 ms  windowClosed
+
+Time per department change (median of 5 x 500 changes):
+     d        m  Map lookup (us)      DB query (us)    Map memory (KB)
+    10       50             0.27               53.8                  0
+    50     1000             0.34               95.9                178
+   200    10000             0.29              197.4               1792
