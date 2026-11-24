@@ -1,0 +1,32 @@
+1) FeeService unit tests (no GUI, fake bank 0 ms):
+   PASS  empty register no rejected
+   PASS  8-digit register no rejected
+   PASS  letters in amount rejected
+   PASS  negative amount rejected
+   PASS  3 decimal places rejected
+   PASS  over limit rejected
+   PASS  SQL-injection text is just an invalid register no
+   PASS  valid payment saved with exact amount
+   PASS  receipt returns the last payment
+   PASS  receipt for unknown student is empty
+   10/10 passed
+
+2) GUI interactions (bank takes 3 s):
+   invalid amount -> 'Amount must be a number, e.g. 45000 or 45000.50.'
+[screenshot] screenshots/1_invalid_amount.png (336x130)
+   during payment -> 'Contacting bank... please wait.', Pay enabled=false
+[screenshot] screenshots/2_payment_in_progress.png (294x130)
+   EDT worst response time during the 3 s payment (SwingWorker): 2.1 ms
+   after payment  -> 'Paid Rs 45000 for 192311001. Receipt RCPT-5001'
+[screenshot] screenshots/3_payment_done.png (320x130)
+[screenshot] screenshots/4_receipt_dialog.png (262x125)
+
+3) Same 3 s wait done ON the EDT (original design):
+   a repaint/click queued 50 ms after Pay waited 2950 ms (window frozen, 'Not responding')
+
+4) Event dispatch cost, last button of k (avg of 2,000,000 events, ns):
+      k   one listener + if-else  listener per button
+      3                     13.6                  4.1
+     10                     39.3                  4.1
+     30                     78.6                  0.0
+    100                    320.0                  0.0
